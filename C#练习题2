@@ -1,0 +1,103 @@
+要求;
+1请用户输入n个整数
+2依次存储n个数
+3对其进行排序(要求 至少运用两张方式排序)
+ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+/*author LongwuRyuBu*/
+namespace NewFramework
+{
+
+    class Program
+    {
+        static int QuickSort(int[] s, int start, int end)
+        {
+            int i, j;    //定义变量为基本整型
+            i = start;    //将每组首个元素赋给i
+            j = end;    //将每组末尾元素赋给j
+            s[0] = s[start];    //设置基准值
+            while (i < j)
+            {
+                while (i < j && s[0] < s[j])
+                    j--;    //位置左移
+                if (i < j)
+                {
+                    s[i] = s[j];    //将s[j]放到s[i]的位置上
+                    i++;    //位置右移
+                }
+                while (i < j && s[i] <= s[0])
+                    i++;    //位置左移
+                if (i < j)
+                {
+                    s[j] = s[i];    //将大于基准值的s[j]放到s[i]位置
+                    j--;    //位置左移
+                }
+            }//while
+            s[i] = s[0];    //将基准值放入指定位置
+            if (start < i)
+                QuickSort(s, start, j - 1);    //对分割出的部分递归调用qusort()函数
+            if (i < end)
+                QuickSort(s, j + 1, end);
+            return 0;
+        }//QuickSort
+
+        //BubbleSort
+        public static void BubbleSort(int[] data)
+        {
+            for (int i = 0; i < data.Length - 1; i++)
+            {
+                for (int j = data.Length - 1; j > i; j--)
+                {
+                    if (data[j] > data[j - 1])
+                    {
+                        data[j] = data[j] + data[j - 1];
+                        data[j - 1] = data[j] - data[j - 1];
+                        data[j] = data[j] - data[j - 1];
+                    }
+                }//内层for
+            }//外层for
+        }
+        static void Main(string[] args)
+        {
+
+            string InputN = Console.ReadLine();
+
+            int n = int.Parse(InputN);
+            int p = n;
+            int[] array = new int[++n];
+            int[] array1 = new int[p];
+            int j = 0,count=0;
+            for (int i = 1; i < n; i++)
+            {
+                
+                string InputAcount = Console.ReadLine();
+                count= int.Parse(InputAcount);
+                array[i] = count;
+                array1[j] = count;
+                j++;
+            }
+
+            QuickSort(array, 1, n - 1);
+            Console.Write("快速排序正序：");
+            for (int i = 1; i < n; i++)
+            {
+                Console.Write(array[i] + " ");
+
+            } 
+            BubbleSort(array1);
+            Console.Write("冒泡排序逆序：");
+            for (int i = 0; i < p; i++)
+            {
+                Console.Write(array1[i] + " ");
+
+            }
+            Console.Read();
+        }//main
+
+
+
+    }
+}
