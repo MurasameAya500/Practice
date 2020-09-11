@@ -1,0 +1,54 @@
+控制台输入金额 转换成元角分
+
+例如输入 21.83 转成二十一元八角三分
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+/*author LongwuRyuBu*/
+namespace NewFramework
+{
+
+    class Program
+    {
+        static string[] unit = { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "百", "千", "万", "元", "角", "分" };
+        static public void RushOutput(int output, int control)
+        {   
+            if (output != 0)
+            {
+                Console.Write(unit[output] + unit[control]);
+            }
+        }
+        static public void Calculate( double rush)
+        {
+            int output;
+            output = (int)rush / 10000;
+            RushOutput(output, 13);
+            output = ((int)rush / 1000) % 10;
+            RushOutput(output, 12);
+            output = ((int)rush / 100) % 10;
+            RushOutput(output, 11);
+            output = ((int)rush / 10) % 10;
+            RushOutput(output, 10);
+            output = (int)rush % 10;
+            RushOutput(output, 14);
+            rush = rush - (int)rush;
+            output = (int)(rush / 0.1);
+            RushOutput(output, 15);
+            output = (int)((rush / 0.01) % 10)+1;
+            RushOutput(output, 16);
+            Console.Read();
+        }
+        static void Main(string[] args)
+        {
+            string key = Console.ReadLine();
+            double rush = double.Parse(key);
+            Calculate(rush);
+
+        }//main
+
+   
+
+    }
+}
