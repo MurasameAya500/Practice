@@ -1,0 +1,52 @@
+让用户输入两个整数，然后再输入0-3之间的一个数，0代表加法，1代表减法，2代表乘法，3代表除法,计算这两个数字的结果。
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+/*author LongwuRyuBu*/
+namespace NewFramework
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string s1 =Console.ReadLine();
+            string s2 = Console.ReadLine();
+            string control = Console.ReadLine();
+            int i = int.Parse(control);
+            int a1 = int.Parse(s1);
+            int a2 = int.Parse(s2);
+            int result = -1;
+            switch (i)
+            {
+                case 0:
+                    {
+                        result = a1 + a2;
+                        break;
+                    }
+                case 1:
+                    {
+                        result = a1 - a2;
+                        break;
+                    }
+                case 2:
+                    {
+                        result = a1 * a2;
+                        break;
+                    }
+                case 3:
+                    {
+                        result = a1 / a2;
+                        break;
+                    }
+                default:
+                    {
+                        return ;
+                    }
+            }//switch
+
+            Console.WriteLine(result);
+            Console.Read();
+        }//main
+    }
+}
